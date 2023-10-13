@@ -1,0 +1,59 @@
+.side-lay-out {
+  height: 100vh;
+  display: flex;
+
+  &-menu {
+    display: flex;
+    flex-direction: column;
+    .ant-menu {
+      flex: 1;
+    }
+
+    .collapsed-box {
+      background: #001529;
+      display: flex;
+      justify-content: flex-end;
+      transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+      &-btn-fold {
+        width: 72px;
+      }
+      &-btn-unfold {
+        width: 45px;
+      }
+      &-btn {
+        margin: 4px;
+        background-color: #001529;
+        color: rgba($color: #fff, $alpha: .8);
+        &:hover,&:active {
+          color: #fff !important;
+          background-color: #001529 !important;
+        }
+      }
+    }
+  }
+  &-menu-unfold {
+    // width: 256px;
+    .ant-menu {
+      .ant-menu-item,.ant-menu-submenu-inline {
+        .ant-menu-title-content {
+          text-align: left;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+  // &-menu-fold {
+  //   width: 80px;
+  // }
+  &-container {
+    flex: 1;
+    background-color: #efefef;
+    .nav {
+      height: 70px;
+      background-color: #fff;
+    }
+    .content {
+
+    }
+  }
+}
