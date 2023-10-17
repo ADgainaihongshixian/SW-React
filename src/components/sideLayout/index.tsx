@@ -1,23 +1,29 @@
 import React, { FC, useState } from 'react';
-import { Button, Menu, MenuProps } from 'antd';
-import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Input, Menu } from 'antd';
+import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, SmileOutlined, DownOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { SearchProps } from 'antd/es/input';
 import intl from 'react-intl-universal';
 import { jointCn } from '../../utils/funcs';
+import cnenIcon from '../../assets/svgs/cnenIcon.svg';
+import installIcon from '../../assets/svgs/installIcon.svg';
 import './index.scss';
+
 
 type SideLayoutType = {
   aa?:any;
 }
 type MenuItem = Required<MenuProps>['items'][number];
+const { Search } = Input;
 
 const SideLayout: FC<SideLayoutType> = (props) => {
-  const outerLayer = 'side-lay-out';
+  const outerLayer = 'app-side-layout';
   const btnBox = 'collapsed-box';
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
-  const items:MenuItem[] = [
+  const menuList: MenuItem[] = [
     { key: 1, label: '1', icon: <PieChartOutlined />, title: '' },
     { key: 2, label: '2', icon: <DesktopOutlined />, title: '' },
     { key: 3, label: '3', icon: <ContainerOutlined />, title: '' },
@@ -27,16 +33,52 @@ const SideLayout: FC<SideLayoutType> = (props) => {
       {key: 52, label: '5-2'},
     ] },
   ];
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const langItems: MenuProps['items'] = [
+    {
+      key: 'CN',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">中文</a>
+      ),
+    },
+    {
+      key: 'EN',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">英文</a>
+      ),
+    },
+  ];
+  const installItems: MenuProps['items'] = [
+    {
+      key: 'user',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">用户管理</a>
+      ),
+    },
+    {
+      key: 'logout',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">退出登录</a>
+      ),
+    },
+    {
+      key: 'help',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">帮助</a>
+      ),
+    },
+  ];
+
   return (
     <div className={outerLayer}>
       <section className={jointCn(outerLayer,collapsed?'menu-fold':'menu-unfold','menu')}>
         <Menu
-          defaultSelectedKeys={[items?.[0]?.key?`${items[0].key}`:'1']}
-          defaultOpenKeys={[items?.[0]?.key?`${items[0].key}`:'1']}
+          defaultSelectedKeys={[menuList?.[0]?.key?`${menuList[0].key}`:'1']}
+          defaultOpenKeys={[menuList?.[0]?.key?`${menuList[0].key}`:'1']}
           mode="inline"
           theme="dark"
           inlineCollapsed={collapsed}
-          items={items}
+          items={menuList}
           style={{width:collapsed ? 80 : 256}}
         />
         <div className={btnBox} style={{width:collapsed ? 80 : 256}}>
@@ -46,8 +88,21 @@ const SideLayout: FC<SideLayoutType> = (props) => {
         </div>
       </section>
       <section className={jointCn(outerLayer,'container')}>
-        <div className='nav'>11</div>
-        <div className='content'>22</div>
+        <div className='tools'>
+          <Search className='global-search' placeholder="全局搜索" allowClear onSearch={onSearch} />
+          <Dropdown menu={{ items: langItems }} className='lang-dropdown' overlayClassName='lang-dropdown-menu'>
+            <a onClick={(e) => e.preventDefault()}>
+              <img src={cnenIcon} />
+              <DownOutlined />
+            </a>
+          </Dropdown>
+          <Dropdown menu={{ items: installItems }} className='install-dropdown' overlayClassName='install-dropdown-menu'>
+            <a onClick={(e) => e.preventDefault()}>
+              <img src={installIcon} />
+              <DownOutlined />
+            </a>
+          </Dropdown>
+        </div>
       </section>
     </div>
   );

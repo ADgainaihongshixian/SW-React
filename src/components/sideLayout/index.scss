@@ -1,4 +1,4 @@
-.side-lay-out {
+.app-side-layout {
   height: 100vh;
   display: flex;
 
@@ -48,12 +48,40 @@
   &-container {
     flex: 1;
     background-color: #efefef;
-    .nav {
-      height: 70px;
-      background-color: #fff;
+    .tools {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      .global-search {
+        width: 200px;
+        margin-left: auto;
+        .ant-input-affix-wrapper,.ant-input-group-addon .ant-btn {
+          height: 30px;
+          background-color: #efefef;
+          border: none;
+          box-shadow: none;
+        }
+        .ant-input {
+          background-color: #efefef;
+        }
+      }
+      .lang-dropdown {
+        margin: 0 16px;
+        display: flex;
+      }
+      .install-dropdown {
+        margin-right: 16px;
+        display: flex;
+      }
     }
-    .content {
+  }
+}
 
+.lang-dropdown-menu,.install-dropdown-menu {
+  ul {
+    background-color: #000 !important;
+    li {
+      color: #fff !important;
     }
   }
 }
