@@ -4,11 +4,10 @@ import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, Men
 import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
 import intl from 'react-intl-universal';
-import { jointCn } from '../../utils/funcs';
-import cnenIcon from '../../assets/svgs/cnenIcon.svg';
-import installIcon from '../../assets/svgs/installIcon.svg';
+import { jointCn } from '@/utils/funcs';
+import cnenIcon from '@/assets/svgs/cnenIcon.svg';
+import installIcon from '@/assets/svgs/installIcon.svg';
 import './index.scss';
-
 
 type SideLayoutType = {
   aa?:any;
