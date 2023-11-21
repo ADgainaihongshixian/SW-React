@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, useHistory, useLocation, withRouter, Switch } from 'react-router-dom';
-import SideLayout from './components/sideLayout';
+import { ConfigProvider } from 'antd';
+import SideLayout from '@/components/sideLayout';
 import intl from 'react-intl-universal';
 import isEmpty from 'lodash/isEmpty';
-import { getLocalLang, setLocalLang } from './utils/funcs';
+import { getLocalLang, setLocalLang } from '@/utils/funcs';
 
 import logo from './logo.svg';
 import './App.css';
@@ -12,20 +13,27 @@ function App() {
   const lang = getLocalLang();
   let currentLocale = intl.determineLocale({
     localStorageLocaleKey: 'LANGUAGE_KEY',
-    // cookieLocaleKey: 'lang'
+    // cookieLocaleKey: 'lang',
     // urlLocaleKey:'lang',
-    // cookieLocaleKey:'lang',
   });
   
   const locales = {
     'en': require('./locales/en-US.json'),
     'zh': require('./locales/zh-CN.json'),
   };
-  intl.init({ currentLocale, locales: {[currentLocale]: currentLocale === 'en-US' ? locales.en : locales.zh} });
   if (isEmpty(lang)) {
     setLocalLang('zh-CN');
     currentLocale = 'zh-CN';
   }
+  intl.init({ currentLocale, locales: {[currentLocale]: currentLocale === 'en-US' ? locales.en : locales.zh} });
+  const langFn = (language: string) => {
+    if (getLocalLang() !== language) {
+      setLocalLang(language);
+      currentLocale = language;
+    }
+    const search = window.location.search.replace(/[?|&]lang=[^&]+/, '');
+    window.location.search = window.location.search ? `${search}&lang=${currentLocale}` : `?lang=${currentLocale}`;
+  };
   
   return (
     // <div className='App'>
@@ -45,7 +53,9 @@ function App() {
     //   </header>
     // </div>
     <div className='App'>
-      <SideLayout/>
+      <ConfigProvider locale={currentLocale === 'en-US' ? locales.en : locales.zh}>
+        <SideLayout langFn={langFn}/>
+      </ConfigProvider>
     </div>
   );
 }

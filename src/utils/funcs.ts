@@ -1,4 +1,4 @@
-import { LANGUAGE_KEY } from './const';
+import { LANGUAGE_KEY } from '@/utils/const';
 
 // localStorage 工具函数
 export const getLocalStorage = (key: string) => window.localStorage.getItem(key);
