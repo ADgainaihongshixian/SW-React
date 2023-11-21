@@ -4,24 +4,30 @@ import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, Men
 import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
 import intl from 'react-intl-universal';
-import { jointCn } from '@/utils/funcs';
-import cnenIcon from '@/assets/svgs/cnenIcon.svg';
-import installIcon from '@/assets/svgs/installIcon.svg';
+import { getLocalStorage, jointCn, setLocalStorage } from '@/utils/funcs';
+import { COLLAPSEDKEY } from '@/utils/const';
+import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
+import InstallIcon from '@/assets/svgs/InstallIcon.svg';
 import './index.scss';
 
 type SideLayoutType = {
-  aa?:any;
+  langFn:any;
 }
 type MenuItem = Required<MenuProps>['items'][number];
 const { Search } = Input;
 
 const SideLayout: FC<SideLayoutType> = (props) => {
+  const {langFn} = props;
   const outerLayer = 'app-side-layout';
   const btnBox = 'collapsed-box';
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const collapsedKey = getLocalStorage(COLLAPSEDKEY);
+
+  const [collapsed, setCollapsed] = useState<boolean>(collapsedKey && +collapsedKey ? true : false);
   const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
+    collapsedKey && +collapsedKey ? setLocalStorage(COLLAPSEDKEY,'0') : setLocalStorage(COLLAPSEDKEY,'1');
+    collapsedKey && +collapsedKey ? setCollapsed(false) : setCollapsed(true);
   };
+  
   const menuList: MenuItem[] = [
     { key: 1, label: '1', icon: <PieChartOutlined />, title: '' },
     { key: 2, label: '2', icon: <DesktopOutlined />, title: '' },
@@ -33,17 +39,18 @@ const SideLayout: FC<SideLayoutType> = (props) => {
     ] },
   ];
   const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+
   const langItems: MenuProps['items'] = [
     {
       key: 'CN',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">中文</a>
+        <div onClick={()=>langFn('zh-CN')}>{intl.get('Zh_Language')}</div>
       ),
     },
     {
       key: 'EN',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">英文</a>
+        <div onClick={()=>langFn('en-US')}>{intl.get('En_Language')}</div>
       ),
     },
   ];
@@ -88,16 +95,16 @@ const SideLayout: FC<SideLayoutType> = (props) => {
       </section>
       <section className={jointCn(outerLayer,'container')}>
         <div className='tools'>
-          <Search className='global-search' placeholder="全局搜索" allowClear onSearch={onSearch} />
+          <Search className='global-search' placeholder={intl.get('Global_Search')} allowClear onSearch={onSearch} />
           <Dropdown menu={{ items: langItems }} className='lang-dropdown' overlayClassName='lang-dropdown-menu'>
             <a onClick={(e) => e.preventDefault()}>
-              <img src={cnenIcon} />
+              <img src={CnEnIcon} />
               <DownOutlined />
             </a>
           </Dropdown>
           <Dropdown menu={{ items: installItems }} className='install-dropdown' overlayClassName='install-dropdown-menu'>
             <a onClick={(e) => e.preventDefault()}>
-              <img src={installIcon} />
+              <img src={InstallIcon} />
               <DownOutlined />
             </a>
           </Dropdown>
