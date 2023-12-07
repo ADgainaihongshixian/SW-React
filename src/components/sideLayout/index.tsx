@@ -3,9 +3,12 @@ import { Button, Dropdown, Input, Menu } from 'antd';
 import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, SmileOutlined, DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
+import AutoRoute from '@/components/autoRoute';
 import intl from 'react-intl-universal';
+import { cloneDeep } from 'lodash';
 import { getLocalStorage, jointCn, setLocalStorage } from '@/utils/funcs';
 import { COLLAPSEDKEY } from '@/utils/const';
+import { routers } from '@/routes';
 import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
 import InstallIcon from '@/assets/svgs/InstallIcon.svg';
 import './index.scss';
@@ -109,6 +112,7 @@ const SideLayout: FC<SideLayoutType> = (props) => {
             </a>
           </Dropdown>
         </div>
+        <AutoRoute routeMaps={cloneDeep(routers)}/>
       </section>
     </div>
   );

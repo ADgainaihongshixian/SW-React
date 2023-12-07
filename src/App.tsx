@@ -3,7 +3,7 @@ import { BrowserRouter, useHistory, useLocation, withRouter, Switch } from 'reac
 import { ConfigProvider } from 'antd';
 import SideLayout from '@/components/sideLayout';
 import intl from 'react-intl-universal';
-import isEmpty from 'lodash/isEmpty';
+import {isEmpty} from 'lodash';
 import { getLocalLang, setLocalLang } from '@/utils/funcs';
 
 import logo from './logo.svg';
