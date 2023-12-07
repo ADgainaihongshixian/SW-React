@@ -5,7 +5,7 @@ import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
 import AutoRoute from '@/components/autoRoute';
 import intl from 'react-intl-universal';
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 import { getLocalStorage, jointCn, setLocalStorage } from '@/utils/funcs';
 import { COLLAPSEDKEY } from '@/utils/const';
 import { routers } from '@/routes';
