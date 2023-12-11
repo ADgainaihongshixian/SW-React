@@ -2,8 +2,7 @@ import { PATH, PATH_COMPANY_LIST, PATH_HOME, PATH_PRODUCT_LIST, PATH_TOOLS } fro
 
 export const routers = [
   {
-    // to: [PATH,PATH_HOME],
-    to: PATH_HOME,
+    to: [PATH,PATH_HOME],
     com: ()=> import('../pages/home')
   },
   {
