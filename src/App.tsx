@@ -16,25 +16,30 @@ function App() {
     // cookieLocaleKey: 'lang',
     // urlLocaleKey:'lang',
   });
-  
+
   const locales = {
-    'en': require('./locales/en-US.json'),
-    'zh': require('./locales/zh-CN.json'),
+    en: require('./locales/en-US.json'),
+    zh: require('./locales/zh-CN.json'),
   };
   if (isEmpty(lang)) {
     setLocalLang('zh-CN');
     currentLocale = 'zh-CN';
   }
-  intl.init({ currentLocale, locales: {[currentLocale]: currentLocale === 'en-US' ? locales.en : locales.zh} });
+  intl.init({
+    currentLocale,
+    locales: { [currentLocale]: currentLocale === 'en-US' ? locales.en : locales.zh },
+  });
   const langFn = (language: string) => {
     if (getLocalLang() !== language) {
       setLocalLang(language);
       currentLocale = language;
     }
     const search = window.location.search.replace(/[?|&]lang=[^&]+/, '');
-    window.location.search = window.location.search ? `${search}&lang=${currentLocale}` : `?lang=${currentLocale}`;
+    window.location.search = window.location.search
+      ? `${search}&lang=${currentLocale}`
+      : `?lang=${currentLocale}`;
   };
-  
+
   return (
     // <div className='App'>
     //   <header className='App-header'>
@@ -54,7 +59,7 @@ function App() {
     // </div>
     <div className='App'>
       <ConfigProvider locale={currentLocale === 'en-US' ? locales.en : locales.zh}>
-        <SideLayout langFn={langFn}/>
+        <SideLayout langFn={langFn} />
       </ConfigProvider>
     </div>
   );

@@ -1,0 +1,11 @@
+# Prettier配置文档
+  1. semi: true, [在语句末尾添加分号]
+  2. singleQuote: true, [使用单引号而不是双引号]
+  3. tabWidth: 2, [缩进的空格数]
+  4. printWidth: 120, [每行的最大字符数]
+  5. bracketSameLine: true, [在多行元素的最后一行放一个括号]
+  6. arrowParens: 'always', [箭头函数的参数总是用括号包裹]
+  7. trailingComma: 'all', [对象最后一个属性末尾添加逗号，如：{ a: 1, b: 2, }]
+  8. jsxSingleQuote: true, [在JSX中使用单引号而不是双引号]
+  9. bracketSpacing: true, [在对象字面量中添加空格，例如 { foo: bar }]
+  10. endOfLine: "auto" [在最后一行多换一行]

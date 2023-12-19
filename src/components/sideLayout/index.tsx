@@ -1,11 +1,16 @@
 import React, { FC, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Dropdown, Input, Menu } from 'antd';
 import { AppstoreOutlined, ContainerOutlined, DesktopOutlined, MailOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, SmileOutlined, DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
+import AutoRoute from '@/components/autoRoute';
 import intl from 'react-intl-universal';
+import cloneDeep from 'lodash/cloneDeep';
 import { getLocalStorage, jointCn, setLocalStorage } from '@/utils/funcs';
 import { COLLAPSEDKEY } from '@/utils/const';
+import { routers } from '@/routes';
+import { PATH, PATH_HOME, PATH_PRODUCT_LIST } from '@/utils/router';
 import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
 import InstallIcon from '@/assets/svgs/InstallIcon.svg';
 import './index.scss';
@@ -17,7 +22,8 @@ type MenuItem = Required<MenuProps>['items'][number];
 const { Search } = Input;
 
 const SideLayout: FC<SideLayoutType> = (props) => {
-  const {langFn} = props;
+  const { langFn } = props;
+  const history = useHistory();
   const outerLayer = 'app-side-layout';
   const btnBox = 'collapsed-box';
   const collapsedKey = getLocalStorage(COLLAPSEDKEY);
@@ -29,8 +35,8 @@ const SideLayout: FC<SideLayoutType> = (props) => {
   };
   
   const menuList: MenuItem[] = [
-    { key: 1, label: '1', icon: <PieChartOutlined />, title: '' },
-    { key: 2, label: '2', icon: <DesktopOutlined />, title: '' },
+    { key: 1, label: '1', icon: <PieChartOutlined />, title: '', onClick:(p:any)=>history.push(PATH_HOME) },
+    { key: 2, label: '2', icon: <DesktopOutlined />, title: '', onClick:(p:any)=>history.push(PATH_PRODUCT_LIST)},
     { key: 3, label: '3', icon: <ContainerOutlined />, title: '' },
     { key: 4, label: '4', icon: <MailOutlined />, title: '' },
     { key: 5, label: '5', icon: <AppstoreOutlined />, children:[
@@ -109,6 +115,7 @@ const SideLayout: FC<SideLayoutType> = (props) => {
             </a>
           </Dropdown>
         </div>
+        <AutoRoute routeMaps={cloneDeep(routers)}/>
       </section>
     </div>
   );

@@ -13,5 +13,23 @@
     "eslint.validate": [
         "javascript",
         "typescript"
-    ]
+    ],
+    // 若在vscode安装prettier插件,则需如下配置项
+    // "editor.formatOnSave": true,
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "[javascript]": {
+    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
+    //   },
+    //   "[javascriptreact]": {
+    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
+    //   },
+    //   "[typescript]": {
+    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
+    //   },
+    //   "[typescriptreact]": {
+    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
+    //   },
+    //   "[json]": {
+    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
+    //   },
 }
