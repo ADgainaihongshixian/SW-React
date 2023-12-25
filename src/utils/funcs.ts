@@ -6,7 +6,7 @@ export const setLocalStorage = (key: string, val: string) => window.localStorage
 
 // 语言环境
 export const getLocalLang = () => getLocalStorage(LANGUAGE_KEY);
-export const setLocalLang = (val:string) => setLocalStorage(LANGUAGE_KEY,val);
+export const setLocalLang = (val: string) => setLocalStorage(LANGUAGE_KEY, val);
 
 // className拼接
-export const jointCn = (m:string,n:string,s?:string)=>!s?`${m}-${n}`:`${m}-${s} ${m}-${n}`;
+export const joinCn = (m: string, n: string, s?: string) => (!s ? `${m}-${n}` : `${m}-${s} ${m}-${n}`);

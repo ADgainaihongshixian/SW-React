@@ -1,0 +1,34 @@
+$prefix-cls: 'common_bodyCom_layout';
+
+.#{$prefix-cls} {
+  height: 100%;
+  .ant-layout-header {
+    background-color: #fff;
+    display: flex;
+    padding: 0;
+  }
+  .ant-layout-content  {
+    margin: 0 20px;
+  }
+  .ant-layout-footer {
+    margin: 0 20px;
+    background-color: #fff;
+    display: flex;
+    padding: 0;
+  }
+  &-header-container {
+    width: 0;
+    flex: 1;
+    overflow: hidden;
+    padding: 0 16px;
+  }
+  &-footer-container {
+    width: 0;
+    flex: 1;
+    overflow: hidden;
+    padding: 0 16px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+}
