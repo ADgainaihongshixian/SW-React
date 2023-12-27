@@ -6,9 +6,14 @@ $prefix-cls: 'common_bodyCom_layout';
     background-color: #fff;
     display: flex;
     padding: 0;
+    height: 50px;
   }
   .ant-layout-content  {
-    margin: 0 20px;
+    margin: 20px;
+    overflow-y: overlay;
+    background-color: #fff;
+    flex: 1;
+    padding: 20px;
   }
   .ant-layout-footer {
     margin: 0 20px;
