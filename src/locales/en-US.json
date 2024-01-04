@@ -1,5 +1,9 @@
 {
     "Global_Search": "Global Search",
     "Zh_Language": "Chinese",
-    "En_Language": "English"
+    "En_Language": "English",
+    "Theme_Dark": "Dark",
+    "Theme_Light": "Light",
+    "Theme_Romance": "Romance",
+    "Theme_Noble": "Noble"
 }

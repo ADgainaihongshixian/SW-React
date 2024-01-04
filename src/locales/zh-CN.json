@@ -1,5 +1,9 @@
 {
     "Global_Search": "全局搜索",
     "Zh_Language": "中文",
-    "En_Language": "英文"
+    "En_Language": "英文",
+    "Theme_Dark": "暗黑",
+    "Theme_Light": "明亮",
+    "Theme_Romance": "浪漫",
+    "Theme_Noble": "高贵"
 }

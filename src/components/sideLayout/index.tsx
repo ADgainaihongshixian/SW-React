@@ -23,6 +23,7 @@ import { routers } from '@/routes';
 import { PATH, PATH_HOME, PATH_PRODUCT_LIST } from '@/utils/router';
 import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
 import InstallIcon from '@/assets/svgs/InstallIcon.svg';
+import ThemeColorIcon from '@/assets/svgs/ThemeColorIcon.svg';
 import './index.scss';
 
 type SideLayoutType = {
@@ -60,6 +61,25 @@ const SideLayout: FC<SideLayoutType> = (props) => {
     },
   ];
   const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+
+  const themeItems: MenuProps['items'] = [
+    {
+      key: 'dark',
+      label: <div onClick={() => ''}>{intl.get('Theme_Dark')}</div>,
+    },
+    {
+      key: 'light',
+      label: <div onClick={() => ''}>{intl.get('Theme_Light')}</div>,
+    },
+    {
+      key: 'romance',
+      label: <div onClick={() => ''}>{intl.get('Theme_Romance')}</div>,
+    },
+    {
+      key: 'noble',
+      label: <div onClick={() => ''}>{intl.get('Theme_Noble')}</div>,
+    },
+  ];
 
   const langItems: MenuProps['items'] = [
     {
@@ -122,8 +142,23 @@ const SideLayout: FC<SideLayoutType> = (props) => {
       </section>
       <section className={joinCn(outerLayer, 'container')}>
         <div className='tools'>
+          <Dropdown
+            menu={{ items: themeItems }}
+            className='lang-dropdown'
+            overlayClassName='lang-dropdown-menu'
+            placement='bottom'
+          >
+            <a onClick={(e) => e.preventDefault()}>
+              <img src={ThemeColorIcon} />
+            </a>
+          </Dropdown>
           <Search className='global-search' placeholder={intl.get('Global_Search')} allowClear onSearch={onSearch} />
-          <Dropdown menu={{ items: langItems }} className='lang-dropdown' overlayClassName='lang-dropdown-menu'>
+          <Dropdown
+            menu={{ items: langItems }}
+            className='lang-dropdown'
+            overlayClassName='lang-dropdown-menu'
+            placement='bottom'
+          >
             <a onClick={(e) => e.preventDefault()}>
               <img src={CnEnIcon} />
               <DownOutlined />
