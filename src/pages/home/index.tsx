@@ -8,6 +8,7 @@ type HomeType = {
 
 const Home: FC<HomeType> = (props) => {
   const { aa } = props;
+
   return <BodyCom headerChildren={11} contentChildren={<div>home.welcome</div>} footerChildren={22} />;
 };
 export default Home;

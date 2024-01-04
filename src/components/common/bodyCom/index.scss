@@ -20,19 +20,27 @@ $prefix-cls: 'common_bodyCom_layout';
     background-color: #fff;
     display: flex;
     padding: 0;
+    height: 50px;
   }
   &-header-container {
     width: 0;
     flex: 1;
     overflow: hidden;
-    padding: 0 16px;
+    padding: 0 16px 0 20px;
+    display: flex;
+    align-items: center;
+    .anticon-arrow-left {
+      font-size: 16px;
+      padding-right: 8px;
+      cursor: pointer;
+      color: #1677ff;
+    }
   }
   &-footer-container {
     width: 0;
     flex: 1;
     overflow: hidden;
     padding: 0 16px;
-    height: 50px;
     display: flex;
     align-items: center;
   }

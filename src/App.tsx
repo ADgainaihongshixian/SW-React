@@ -35,9 +35,7 @@ function App() {
       currentLocale = language;
     }
     const search = window.location.search.replace(/[?|&]lang=[^&]+/, '');
-    window.location.search = window.location.search
-      ? `${search}&lang=${currentLocale}`
-      : `?lang=${currentLocale}`;
+    window.location.search = window.location.search ? `${search}&lang=${currentLocale}` : `?lang=${currentLocale}`;
   };
 
   return (
