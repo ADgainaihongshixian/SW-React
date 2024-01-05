@@ -60,7 +60,7 @@ const SideLayout: FC<SideLayoutType> = (props) => {
       ],
     },
   ];
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(value, _e, info?.source);
 
   const themeItems: MenuProps['items'] = [
     {
