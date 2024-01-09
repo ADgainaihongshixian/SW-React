@@ -1,4 +1,6 @@
-.app-side-layout {
+@import '../../themeStyle.scss';
+$prefixCls: 'app-side-layout';
+.#{$prefixCls} {
   height: 100vh;
   display: flex;
 
@@ -71,6 +73,10 @@
         margin: 0 16px;
         display: flex;
       }
+      .theme-dropdown {
+        margin: 0 16px;
+        display: flex;
+      }
       .install-dropdown {
         display: flex;
       }
@@ -78,11 +84,19 @@
   }
 }
 
-.lang-dropdown-menu,.install-dropdown-menu {
+.lang-dropdown-menu,.install-dropdown-menu,.theme-dropdown-menu  {
   ul {
     background-color: #000 !important;
     li {
       color: #fff !important;
     }
   }
+}
+
+// 使用主题函数
+.app-side-layout-container .common_bodyCom_layout .ant-layout-header {
+  @include useTheme{
+    background-color: getVar('bgColor');
+    color: getVar('textColor');
+  };
 }

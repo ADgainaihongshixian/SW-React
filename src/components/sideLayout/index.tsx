@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Dropdown, Input, Menu } from 'antd';
 import {
@@ -16,9 +16,10 @@ import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
 import AutoRoute from '@/components/autoRoute';
 import intl from 'react-intl-universal';
-import cloneDeep from 'lodash/cloneDeep';
+import cn from 'classnames';
+import { cloneDeep, omit } from 'lodash';
 import { getLocalStorage, joinCn, setLocalStorage } from '@/utils/funcs';
-import { COLLAPSEDKEY } from '@/utils/const';
+import { COLLAPSEDKEY, THEMECOLORKEY } from '@/utils/const';
 import { routers } from '@/routes';
 import { PATH, PATH_HOME, PATH_PRODUCT_LIST } from '@/utils/router';
 import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
@@ -35,7 +36,7 @@ const { Search } = Input;
 const SideLayout: FC<SideLayoutType> = (props) => {
   const { langFn } = props;
   const history = useHistory();
-  const outerLayer = 'app-side-layout';
+  const outLayer = 'app-side-layout';
   const btnBox = 'collapsed-box';
   const collapsedKey = getLocalStorage(COLLAPSEDKEY);
 
@@ -62,22 +63,38 @@ const SideLayout: FC<SideLayoutType> = (props) => {
   ];
   const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(value, _e, info?.source);
 
+  const themeColorKey = getLocalStorage(THEMECOLORKEY);
+
+  const themeObj: any = {
+    dark: 'dark',
+    light: 'light',
+    romance: 'romance',
+    noble: 'noble',
+  };
+  const themeOmitMaps = Object.values(omit(themeObj, 'dark'));
+  const [theme, setTheme] = useState<string>(themeColorKey ?? 'dark');
+  // 切换主题
+  const changeTheme = (value: any) => {
+    setTheme(value);
+    setLocalStorage(THEMECOLORKEY, value);
+  };
+
   const themeItems: MenuProps['items'] = [
     {
       key: 'dark',
-      label: <div onClick={() => ''}>{intl.get('Theme_Dark')}</div>,
+      label: <div onClick={() => changeTheme('dark')}>{intl.get('Theme_Dark')}</div>,
     },
     {
       key: 'light',
-      label: <div onClick={() => ''}>{intl.get('Theme_Light')}</div>,
+      label: <div onClick={() => changeTheme('light')}>{intl.get('Theme_Light')}</div>,
     },
     {
       key: 'romance',
-      label: <div onClick={() => ''}>{intl.get('Theme_Romance')}</div>,
+      label: <div onClick={() => changeTheme('romance')}>{intl.get('Theme_Romance')}</div>,
     },
     {
       key: 'noble',
-      label: <div onClick={() => ''}>{intl.get('Theme_Noble')}</div>,
+      label: <div onClick={() => changeTheme('noble')}>{intl.get('Theme_Noble')}</div>,
     },
   ];
 
@@ -119,8 +136,8 @@ const SideLayout: FC<SideLayoutType> = (props) => {
   ];
 
   return (
-    <div className={outerLayer}>
-      <section className={joinCn(outerLayer, collapsed ? 'menu-fold' : 'menu-unfold', 'menu')}>
+    <div className={cn(outLayer, themeOmitMaps.includes(theme) && joinCn(outLayer, themeObj[theme]))}>
+      <section className={joinCn(outLayer, collapsed ? 'menu-fold' : 'menu-unfold', 'menu')}>
         <Menu
           defaultSelectedKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : '1']}
           defaultOpenKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : '1']}
@@ -140,17 +157,15 @@ const SideLayout: FC<SideLayoutType> = (props) => {
           </Button>
         </div>
       </section>
-      <section className={joinCn(outerLayer, 'container')}>
+      <section className={joinCn(outLayer, 'container')}>
         <div className='tools'>
           <Dropdown
             menu={{ items: themeItems }}
-            className='lang-dropdown'
-            overlayClassName='lang-dropdown-menu'
+            className='theme-dropdown'
+            overlayClassName='theme-dropdown-menu'
             placement='bottom'
           >
-            <a onClick={(e) => e.preventDefault()}>
-              <img src={ThemeColorIcon} />
-            </a>
+            <img src={ThemeColorIcon} />
           </Dropdown>
           <Search className='global-search' placeholder={intl.get('Global_Search')} allowClear onSearch={onSearch} />
           <Dropdown
