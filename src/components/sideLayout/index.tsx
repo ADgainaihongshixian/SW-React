@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Dropdown, Input, Menu } from 'antd';
+import { Button, Dropdown, Input, Menu, Tooltip } from 'antd';
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -8,18 +8,16 @@ import {
   MailOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  PieChartOutlined,
-  SmileOutlined,
-  DownOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { SearchProps } from 'antd/es/input';
 import AutoRoute from '@/components/autoRoute';
+import ThemeSvg from '@/components/common/themeSvg';
 import intl from 'react-intl-universal';
 import cn from 'classnames';
 import { cloneDeep, omit } from 'lodash';
 import { getLocalStorage, joinCn, setLocalStorage } from '@/utils/funcs';
-import { COLLAPSEDKEY, THEMECOLORKEY } from '@/utils/const';
+import { COLLAPSEDKEY, SVGICON_KEY, THEMECOLORKEY } from '@/utils/const';
 import { routers } from '@/routes';
 import { PATH, PATH_HOME, PATH_PRODUCT_LIST } from '@/utils/router';
 import CnEnIcon from '@/assets/svgs/CnEnIcon.svg';
@@ -47,7 +45,17 @@ const SideLayout: FC<SideLayoutType> = (props) => {
   };
 
   const menuList: MenuItem[] = [
-    { key: 1, label: '1', icon: <PieChartOutlined />, title: '', onClick: (p: any) => history.push(PATH_HOME) },
+    {
+      key: SVGICON_KEY.UxIcon,
+      label: 'UX',
+      icon: (
+        <span role='img' aria-label='desktop' className='anticon anticon-desktop ant-menu-item-icon'>
+          <ThemeSvg type={SVGICON_KEY.UxIcon} />
+        </span>
+      ),
+      title: '',
+      onClick: (p: any) => history.push(PATH_HOME),
+    },
     { key: 2, label: '2', icon: <DesktopOutlined />, title: '', onClick: (p: any) => history.push(PATH_PRODUCT_LIST) },
     { key: 3, label: '3', icon: <ContainerOutlined />, title: '' },
     { key: 4, label: '4', icon: <MailOutlined />, title: '' },
@@ -138,9 +146,13 @@ const SideLayout: FC<SideLayoutType> = (props) => {
   return (
     <div className={cn(outLayer, themeOmitMaps.includes(theme) && joinCn(outLayer, themeObj[theme]))}>
       <section className={joinCn(outLayer, collapsed ? 'menu-fold' : 'menu-unfold', 'menu')}>
+        <div className='logo-box'>
+          <ThemeSvg type={SVGICON_KEY.LogIcon} w='32' />
+          {!collapsed && <h3>SW</h3>}
+        </div>
         <Menu
-          defaultSelectedKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : '1']}
-          defaultOpenKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : '1']}
+          defaultSelectedKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.UxIcon]}
+          // defaultOpenKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.UxIcon]}
           mode='inline'
           theme='dark'
           inlineCollapsed={collapsed}
@@ -148,13 +160,15 @@ const SideLayout: FC<SideLayoutType> = (props) => {
           style={{ width: collapsed ? 80 : 256 }}
         />
         <div className={btnBox} style={{ width: collapsed ? 80 : 256 }}>
-          <Button
-            type='primary'
-            onClick={toggleCollapsed}
-            className={joinCn(btnBox, collapsed ? 'btn-fold' : 'btn-unfold', 'btn')}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
+          <Tooltip title={intl.get(collapsed ? 'Unfold' : 'Fold')}>
+            <Button
+              type='primary'
+              onClick={toggleCollapsed}
+              className={joinCn(btnBox, collapsed ? 'btn-fold' : 'btn-unfold', 'btn')}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+          </Tooltip>
         </div>
       </section>
       <section className={joinCn(outLayer, 'container')}>
@@ -174,20 +188,15 @@ const SideLayout: FC<SideLayoutType> = (props) => {
             overlayClassName='lang-dropdown-menu'
             placement='bottom'
           >
-            <a onClick={(e) => e.preventDefault()}>
-              <img src={CnEnIcon} />
-              <DownOutlined />
-            </a>
+            <img src={CnEnIcon} />
           </Dropdown>
           <Dropdown
             menu={{ items: installItems }}
             className='install-dropdown'
             overlayClassName='install-dropdown-menu'
+            placement='bottom'
           >
-            <a onClick={(e) => e.preventDefault()}>
-              <img src={InstallIcon} />
-              <DownOutlined />
-            </a>
+            <img src={InstallIcon} />
           </Dropdown>
         </div>
         <AutoRoute routeMaps={cloneDeep(routers)} />

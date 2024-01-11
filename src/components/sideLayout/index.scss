@@ -1,5 +1,8 @@
 @import '../../themeStyle.scss';
+
 $prefixCls: 'app-side-layout';
+$collapsedTransition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+
 .#{$prefixCls} {
   height: 100vh;
   display: flex;
@@ -15,7 +18,7 @@ $prefixCls: 'app-side-layout';
       background: #001529;
       display: flex;
       justify-content: flex-end;
-      transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+      transition: #{$collapsedTransition};
       &-btn-fold {
         width: 72px;
       }
@@ -32,6 +35,16 @@ $prefixCls: 'app-side-layout';
         }
       }
     }
+
+    .logo-box {
+      height: 60px;
+      background-color: #001529;
+      transition: #{$collapsedTransition};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
   }
   &-menu-unfold {
     // width: 256px;
@@ -42,6 +55,11 @@ $prefixCls: 'app-side-layout';
           padding-left: 10px;
         }
       }
+    }
+
+    .logo-box {
+      justify-content: left;
+      padding-left: 20px;
     }
   }
   // &-menu-fold {
@@ -94,9 +112,41 @@ $prefixCls: 'app-side-layout';
 }
 
 // 使用主题函数
-.app-side-layout-container .common_bodyCom_layout .ant-layout-header {
-  @include useTheme{
-    background-color: getVar('bgColor');
-    color: getVar('textColor');
-  };
+.app-side-layout-menu {
+  // @include useTheme{
+  //   box-shadow: 1px 0px 1px getVar('textColor');
+  // };
+  box-shadow: 1px 0px 1px red;
+  .logo-box {
+    @include useTheme{
+      background-color: getVar('bgColor');
+      color: getVar('textColor');
+    };
+  }
+  .ant-menu {
+    @include useTheme{
+      background-color: getVar('bgColor');
+      color: getVar('textColor');
+    };
+  }
+  .collapsed-box {
+    @include useTheme{
+      background-color: getVar('bgColor');
+      color: getVar('textColor');
+    };
+    &-btn {
+      @include useTheme{
+        background-color: getVar('bgColor');
+        color: getVar('textColor');
+      };
+    }
+  }
 }
+// .app-side-layout-container {
+//   .common_bodyCom_layout .ant-layout-header {
+//     @include useTheme{
+//       background-color: getVar('bgColor');
+//       color: getVar('textColor');
+//     };
+//   } 
+// }

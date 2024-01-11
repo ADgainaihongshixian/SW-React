@@ -4,3 +4,8 @@ export const LANGUAGE_KEY = 'LANGUAGE_KEY';
 export const COLLAPSEDKEY = 'COLLAPSED_KEY';
 /**主题颜色缓存Key */
 export const THEMECOLORKEY = 'THEMECOLOR_KEY';
+/**SVG Icon Key */
+export enum SVGICON_KEY {
+  LogIcon = 'logIcon',
+  UxIcon = 'uxIcon',
+}
