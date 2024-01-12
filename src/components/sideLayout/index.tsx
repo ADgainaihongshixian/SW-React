@@ -46,11 +46,11 @@ const SideLayout: FC<SideLayoutType> = (props) => {
 
   const menuList: MenuItem[] = [
     {
-      key: SVGICON_KEY.UxIcon,
+      key: SVGICON_KEY.uxIcon,
       label: 'UX',
       icon: (
         <span role='img' aria-label='desktop' className='anticon anticon-desktop ant-menu-item-icon'>
-          <ThemeSvg type={SVGICON_KEY.UxIcon} />
+          <ThemeSvg type={SVGICON_KEY.uxIcon} />
         </span>
       ),
       title: '',
@@ -147,12 +147,12 @@ const SideLayout: FC<SideLayoutType> = (props) => {
     <div className={cn(outLayer, themeOmitMaps.includes(theme) && joinCn(outLayer, themeObj[theme]))}>
       <section className={joinCn(outLayer, collapsed ? 'menu-fold' : 'menu-unfold', 'menu')}>
         <div className='logo-box'>
-          <ThemeSvg type={SVGICON_KEY.LogIcon} w='32' />
+          <ThemeSvg type={SVGICON_KEY.logIcon} w='32' />
           {!collapsed && <h3>SW</h3>}
         </div>
         <Menu
-          defaultSelectedKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.UxIcon]}
-          // defaultOpenKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.UxIcon]}
+          defaultSelectedKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.uxIcon]}
+          // defaultOpenKeys={[menuList?.[0]?.key ? `${menuList[0].key}` : SVGICON_KEY.uxIcon]}
           mode='inline'
           theme='dark'
           inlineCollapsed={collapsed}

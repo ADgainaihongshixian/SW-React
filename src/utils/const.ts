@@ -6,6 +6,6 @@ export const COLLAPSEDKEY = 'COLLAPSED_KEY';
 export const THEMECOLORKEY = 'THEMECOLOR_KEY';
 /**SVG Icon Key */
 export enum SVGICON_KEY {
-  LogIcon = 'logIcon',
-  UxIcon = 'uxIcon',
+  logIcon = 'logIcon',
+  uxIcon = 'uxIcon',
 }

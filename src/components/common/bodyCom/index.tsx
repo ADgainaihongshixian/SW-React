@@ -11,8 +11,10 @@ import './index.scss';
 
 type BodyComType = {
   cs?: any;
+  needHeader?: boolean;
   headerChildren?: any;
   contentChildren: any;
+  needFooter?: boolean;
   footerChildren?: any;
   showBack?: boolean;
   backUrl?: string;
@@ -21,13 +23,22 @@ type BodyComType = {
 const { Header, Content, Footer } = Layout;
 
 const BodyCom: FC<BodyComType> = (props) => {
-  const { cs, headerChildren, contentChildren, footerChildren, showBack = true, backUrl = PATH } = props;
+  const {
+    cs,
+    needHeader = true,
+    headerChildren,
+    contentChildren,
+    needFooter = true,
+    footerChildren,
+    showBack = true,
+    backUrl = PATH,
+  } = props;
   const layOutClass = 'common_bodyCom_layout';
   const history = useHistory();
 
   return (
     <Layout className={cn(layOutClass, cs)}>
-      <ShowCom show={!!headerChildren}>
+      <ShowCom show={needHeader}>
         <Header>
           <div className={joinCn(layOutClass, 'header-container')}>
             {showBack && <ArrowLeftOutlined onClick={() => history.push(backUrl)} />}
@@ -38,7 +49,7 @@ const BodyCom: FC<BodyComType> = (props) => {
       <Content>
         <div className='content-container'>{contentChildren}</div>
       </Content>
-      <ShowCom show={!!footerChildren}>
+      <ShowCom show={needFooter}>
         <Footer>
           <div className={joinCn(layOutClass, 'footer-container')}>{footerChildren}</div>
         </Footer>
