@@ -8,5 +8,11 @@
     "Theme_Noble": "高贵",
     "Fold": "收起",
     "Unfold": "展开",
-    "UxList": "UX列表"
+    "UxList": "UX列表",
+    "Fault_Ripple": "故障波纹动效",
+    "Filter": "技术原理： {p}滤镜",
+    "Fault_Style_Picture": "故障风格图片",
+    "Mixed_Mode": "技术原理: Css背景图片和颜色混合",
+    "Contrast": "对比度",
+    "Fusion_Style_Picture": "融合风格图片"
 }
