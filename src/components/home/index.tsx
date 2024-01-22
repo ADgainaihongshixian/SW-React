@@ -3,6 +3,7 @@ import { Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import UpDownItem from '@/components/common/upDownItem';
 import ShowCom from '@/components/common/showCom';
+import CarouselCom from '@/components/common/carouselCom';
 import intl from 'react-intl-universal';
 import './index.scss';
 
@@ -12,6 +13,12 @@ type UxListType = {
 
 const UxList: FC<UxListType> = (props) => {
   const cs = 'ux-list-container';
+  const imgMap: { src: string; alt?: string }[] = [
+    { src: 'https://s2.loli.net/2024/01/17/scMPa2jnOJQp7lm.jpg' },
+    { src: 'https://s2.loli.net/2024/01/17/HfrEB2a4KbpjCoi.jpg' },
+    { src: 'https://s2.loli.net/2024/01/17/8F3epoUj14GvwxL.jpg' },
+  ];
+
   const renderMap = [
     {
       title: intl.get('Fault_Style_Picture'),
@@ -26,6 +33,10 @@ const UxList: FC<UxListType> = (props) => {
           <div className='main-picture'></div>
         </div>
       ),
+    },
+    {
+      title: intl.get('Carousel'),
+      content: <CarouselCom imgMap={imgMap} />,
     },
     { title: intl.get('Fault_Ripple'), tipTitle: intl.get('Filter', { p: 'SVG' }), content: '22' },
   ];

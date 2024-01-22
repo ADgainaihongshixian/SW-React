@@ -5,7 +5,7 @@ $prefixCls : 'ux-list-container';
   grid-gap: 20px;
   // grid-column-start: span 3;
   .common-updown-item {
-    background-color: #000;
+    background-color: #485563 ;
     color: #fff;
     border-radius: 15px;
     padding: 20px;
@@ -18,7 +18,9 @@ $prefixCls : 'ux-list-container';
     &-content {
       flex: 1;
       width: 100%;
-      padding-top: 20px;
+      margin-top: 20px;
+      overflow-y: overlay;
+      overflow-x: hidden;
       .fault-picture {
         border-radius: 7px;
         height: 100%;
@@ -62,6 +64,17 @@ $prefixCls : 'ux-list-container';
           filter: contrast(3);
         }
       }
+      
+      // &::-webkit-scrollbar {
+      //   width: 8px;
+      //   height: 8px;
+      //   border-radius: 5px;
+      //   background-color: #232e33;
+      // }
+      // &::-webkit-scrollbar-thumb {
+      //   background-color: #6BAF8D;
+      //   border-radius: 5px;
+      // }
     }
   }
 }
