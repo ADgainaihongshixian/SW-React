@@ -12,31 +12,44 @@ type CarouselComType = {
 const CarouselCom: FC<CarouselComType> = (props) => {
   const { imgMap, cs } = props;
   const cl = 'common-carousel';
-  const [imgIndex, setImgIndex] = useState<number>(0);
+  const [imgIndex, setImgIndex] = useState<number>(1);
+  const list = [imgMap[imgMap.length - 1], ...imgMap, imgMap[0]];
   const changeFn = (num: number) => {
     setImgIndex(imgIndex + num);
-    if (num > 0 && imgIndex >= imgMap?.length - 1) {
+    if (num > 0 && imgIndex >= list?.length - 2) {
       setImgIndex(0);
     }
-    if (num < 0 && imgIndex <= 0) {
-      setImgIndex(imgMap?.length - 1);
+    if (num < 0 && imgIndex <= 1) {
+      setImgIndex(list?.length - 1);
     }
   };
   const clickFn = (index: number) => {
     imgIndex !== index && setImgIndex(index);
   };
-  console.log('##imgIndex', imgIndex);
+  const [style, setStyle] = useState<any>({ transform: 'translateX(-100%)' });
 
-  const [style, setStyle] = useState({});
   useEffect(() => {
-    setStyle({ ...style, transform: `translateX(-${imgIndex * 100}%)` });
+    if (imgIndex === 0 || imgIndex === list?.length - 1) {
+      setStyle({ ...style, transform: `translateX(-${imgIndex * 100}%)`, transition: 'none' });
+      // 先强制浏览器渲染transition: 'none'
+      setTimeout(() => {
+        setImgIndex(imgIndex === 0 ? imgIndex + 1 : imgIndex - 1);
+        setStyle({
+          ...style,
+          transform: `translateX(-${(imgIndex === 0 ? imgIndex + 1 : imgIndex - 1) * 100}%)`,
+          transition: '.5s',
+        });
+      }, 100);
+    } else {
+      setStyle({ ...style, transform: `translateX(-${imgIndex * 100}%)`, transition: '.5s' });
+    }
   }, [imgIndex]);
 
   return (
     <div className={cn(cl, cs)}>
       <CaretLeftOutlined className='carousel-left-icon' onClick={() => changeFn(-1)} />
       <div className={joinCn(cl, 'list')} style={{ ...style }}>
-        {imgMap.map((i: { src: string; alt?: string }, idx: number) => (
+        {list.map((i: { src: string; alt?: string }, idx: number) => (
           <img
             key={`${i.src}-${idx}`}
             className='carousel-item'
@@ -51,8 +64,8 @@ const CarouselCom: FC<CarouselComType> = (props) => {
         {imgMap.map((i: { src: string; alt?: string }, idx: number) => (
           <div
             key={`${i.src}-${idx}`}
-            className={cn('dot', { 'dot-active': idx === imgIndex })}
-            onClick={() => clickFn(idx)}
+            className={cn('dot', { 'dot-active': idx + 1 === imgIndex })}
+            onClick={() => clickFn(idx + 1)}
           />
         ))}
       </div>

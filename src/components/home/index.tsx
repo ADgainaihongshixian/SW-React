@@ -35,7 +35,7 @@ const UxList: FC<UxListType> = (props) => {
       ),
     },
     {
-      title: intl.get('Carousel'),
+      title: intl.get('Seamless_Carousel'),
       content: <CarouselCom imgMap={imgMap} />,
     },
     { title: intl.get('Fault_Ripple'), tipTitle: intl.get('Filter', { p: 'SVG' }), content: '22' },
