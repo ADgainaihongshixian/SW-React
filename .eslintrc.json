@@ -64,7 +64,8 @@
             0,
             "error",
             "windows"
-        ]
+        ],
+        "prettier/prettier": "warn"
     },
     "settings": {
         "import/resolver": {
