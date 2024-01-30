@@ -7,9 +7,7 @@ import CarouselCom from '@/components/common/carouselCom';
 import intl from 'react-intl-universal';
 import './index.scss';
 
-type UxListType = {
-  aa?: any;
-};
+type UxListType = Record<string, never>;
 
 const UxList: FC<UxListType> = (props) => {
   const cs = 'ux-list-container';
@@ -38,7 +36,15 @@ const UxList: FC<UxListType> = (props) => {
       title: intl.get('Seamless_Carousel'),
       content: <CarouselCom imgMap={imgMap} />,
     },
-    { title: intl.get('Fault_Ripple'), tipTitle: intl.get('Filter', { p: 'SVG' }), content: '22' },
+    {
+      title: intl.get('Fault_Ripple'),
+      tipTitle: intl.get('Filter', { p: 'SVG' }),
+      content: (
+        <div>
+          <input type='color' />
+        </div>
+      ),
+    },
   ];
 
   return (

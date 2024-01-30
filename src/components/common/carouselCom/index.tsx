@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { CSSProperties, FC, useEffect, useState } from 'react';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import cn from 'classnames';
 import { joinCn } from '@/utils/funcs';
@@ -26,7 +26,7 @@ const CarouselCom: FC<CarouselComType> = (props) => {
   const clickFn = (index: number) => {
     imgIndex !== index && setImgIndex(index);
   };
-  const [style, setStyle] = useState<any>({ transform: 'translateX(-100%)' });
+  const [style, setStyle] = useState<CSSProperties>({ transform: 'translateX(-100%)' });
 
   useEffect(() => {
     if (imgIndex === 0 || imgIndex === list?.length - 1) {

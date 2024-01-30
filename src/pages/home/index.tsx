@@ -3,9 +3,7 @@ import BodyCom from '@/components/common/bodyCom';
 import UxList from '@/components/home';
 import intl from 'react-intl-universal';
 
-type HomeType = {
-  aa?: any;
-};
+type HomeType = Record<string, unknown>;
 
 const Home: FC<HomeType> = (props) => {
   const { aa } = props;

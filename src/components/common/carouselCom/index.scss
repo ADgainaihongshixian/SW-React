@@ -16,8 +16,8 @@ $prefixCls: 'common-carousel';
   .carousel-left-icon, .carousel-right-icon {
     position: absolute;
     top: 50%;
-    color: rgba($color: #fff, $alpha: .8);
     z-index: 2;
+    opacity: .8;
     display: none;
   }
   .carousel-left-icon {
