@@ -13,10 +13,10 @@ const AutoRoute: FC<AutoRouteType> = (props) => {
     <>
       <Suspense fallback={'...'}>
         <Switch>
-          {routeMaps.map((route:any,index:number) => (
+          {routeMaps.map((route: any, index: number) => (
             typeof route.to === 'string'
-            ? <Route key={`${route}-${index}`} exact path={route.to} component={lazy(route.com)}></Route>
-            : route.to?.map((r:any,idx:number) => <Route key={`${r}-${idx}`} exact path={r} component={lazy(routeMaps[index].com)}></Route>)
+              ? <Route key={`${route}-${index}`} exact path={route.to} component={lazy(route.com)}></Route>
+              : route.to?.map((r: any, idx: number) => <Route key={`${r}-${idx}`} exact path={r} component={lazy(routeMaps[index].com)}></Route>)
           ))}
         </Switch>
       </Suspense>
