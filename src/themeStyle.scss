@@ -1,0 +1,32 @@
+$prefixCls: 'app-side-layout';
+
+// 主题
+$themes: (
+  light: (
+    bgColor: #fff,
+    textColor: #000,
+  ),
+  romance:(
+    bgColor: #fad0c4,
+    textColor: #ffd1ff,
+  ),
+  noble: (
+    bgColor: #a18cd1,
+    textColor: #fbc2eb,
+  ),
+);
+
+$currentTheme: 'light';
+@mixin useTheme() {
+  @each $key, $value in $themes {
+    $currentTheme: $key !global;
+    .#{$prefixCls}-#{$key} & {
+      @content;
+    }
+  }
+}
+
+@function getVar($filedName) {
+  $themeMap: map-get($themes, $currentTheme);
+  @return map-get($themeMap, $filedName);
+}
