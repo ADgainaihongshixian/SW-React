@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import intl from 'react-intl-universal';
 
 type ProductListType = {
-  aa?:any
+  aa?: any;
 }
 
 const ProductList: FC<ProductListType> = (props) => {
