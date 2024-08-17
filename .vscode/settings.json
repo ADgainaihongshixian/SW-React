@@ -1,14 +1,14 @@
 {
     "workbench.editor.enablePreview": true,
-    "workbench.editor.showTabs": true,
+    "workbench.editor.showTabs": "multiple",
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.editor.highlightModifiedTabs": true,
     "eslint.codeAction.showDocumentation": {
         "enable": true
     },
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.fixAll.eslint": true
+        "source.fixAll": "explicit",
+        "source.fixAll.eslint": "explicit"
     },
     "eslint.validate": [
         "javascript",
