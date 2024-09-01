@@ -45,6 +45,8 @@
         "@typescript-eslint/no-use-before-define": "off",
         // 'react-hooks/exhaustive-deps': 'warn',
         "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-explicit-any":"off",
+        "@typescript-eslint/no-require-imports": "warn",
         "react/display-name": "off",
         "react/prop-types": 0,
         "quotes": [
@@ -57,6 +59,7 @@
         ],
         "no-nested-ternary": 0,
         "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
         "max-len": "off",
         "no-mixed-spaces-and-tabs": "off",
         "@typescript-eslint/explicit-member-accessibility": "off",

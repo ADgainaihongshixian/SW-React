@@ -92,7 +92,7 @@
   89. "no-unneeded-ternary": 2,//禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
   90. "no-unreachable": 2,//不能有无法执行的代码
   91. "no-unused-expressions": 2,//禁止无用的表达式
-  92. "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数
+  92. "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数 (可以间简写为"no-unused-vars": "off")
   93. "no-use-before-define": 2,//未定义前不能使用
   94. "no-useless-call": 2,//禁止不必要的call和apply
   95. "no-void": 2,//禁用void操作符
@@ -158,7 +158,7 @@
   153. "semi-spacing": [0, {"before": false, "after": true}],//分号前后空格
   154. "sort-vars": 0,//变量声明时排序
   155. "space-after-keywords": [0, "always"],//关键字后面是否要空一格
-  156. "space-before-blocks": [0, "always"],//不以新行开始的块{前面要不要有空格
+  156. "space-before-blocks": [0, "always"],//不以新行开始的块
   157. "space-before-function-paren": [0, "always"],//函数定义时括号前面要不要有空格
   158. "space-in-parens": [0, "never"],//小括号里面要不要有空格
   159. "space-infix-ops": 0,//中缀操作符周围要不要有空格
@@ -172,4 +172,8 @@
   167. "vars-on-top": 2,//var必须放在作用域顶部
   168. "wrap-iife": [2, "inside"],//立即执行函数表达式的小括号风格
   169. "wrap-regex": 0,//正则表达式字面量用小括号包起来
-  170. "yoda": [2, "never"]//禁止尤达条件
+  170. "yoda": [2, "never"],//禁止尤达条件
+
+  171. "@typescript-eslint/no-explicit-any":"off", // 关闭any类型警告
+  172. "@typescript-eslint/no-unused-vars": "warn", // 出现声明后未被使用的变量或参数时警告
+  173. "@typescript-eslint/no-require-imports": "warn", // 调用require()时警告
